@@ -15,9 +15,10 @@ test('initialState', () => {
 test('changeBrushSize', () => {
     let defaultState;
     const newBrushSize = 8078;
+    const initialSegmentSize = 1;
 
     expect(brushReducer(defaultState /* state */, changeBrushSize(newBrushSize) /* action */))
-        .toEqual({brushSize: newBrushSize});
+        .toEqual({brushSize: newBrushSize, segSize: initialSegmentSize});
     expect(brushReducer(1 /* state */, changeBrushSize(newBrushSize) /* action */))
         .toEqual({brushSize: newBrushSize});
 
@@ -28,7 +29,7 @@ test('changeBrushSize', () => {
 });
 
 test('invalidChangeBrushSize', () => {
-    const origState = {brushSize: 1};
+    const origState = {brushSize: 1, segSize: 1};
 
     expect(brushReducer(origState /* state */, changeBrushSize('invalid argument') /* action */))
         .toBe(origState);
